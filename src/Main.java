@@ -195,6 +195,7 @@ public class Main {
                             break;
                         } else {
                             Zoo.getVisits().getLast().addVisitor(Zoo.getVisitors().get(e));
+
                         }
                     } while (true);
                     nab.clear();
