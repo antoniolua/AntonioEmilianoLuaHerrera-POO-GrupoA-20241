@@ -78,3 +78,4 @@ class Employee:
 
     def set_schedule(self, schedule):
         self.__schedule = schedule
+
