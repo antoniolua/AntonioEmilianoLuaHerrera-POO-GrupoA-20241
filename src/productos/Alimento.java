@@ -1,9 +1,10 @@
 package productos;
 
-public class Alimentos extends Productos{
+public class Alimento extends Producto {
     private String fechaCaducidad;
-    public Alimentos(String nombre, float precio, String fechaImportacion, int numeroSerie, String fechaCaducidad) {
-        super(nombre, precio, fechaImportacion, numeroSerie);
+
+    public Alimento(String nombre, float precio, String fechaImportacion, int numeroSerie, int stock, String fechaCaducidad) {
+        super(nombre, precio, fechaImportacion, numeroSerie, stock);
         this.fechaCaducidad = fechaCaducidad;
     }
 

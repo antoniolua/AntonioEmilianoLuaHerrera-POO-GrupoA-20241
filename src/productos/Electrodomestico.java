@@ -1,4 +1,4 @@
 package productos;
 
-public class Electrodomesticos {
+public class Electrodomestico {
 }
