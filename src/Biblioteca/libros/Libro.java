@@ -4,7 +4,7 @@ import Biblioteca.libros.constants.Genero;
 
 import java.time.LocalDate;
 
-public class Libro {
+public abstract class Libro {
     private static  int CANTIDAD_LIBROS = 1;
     private int id;
     private String nombre;
@@ -25,5 +25,10 @@ public class Libro {
         this.precio = precio;
         this.stock = stock;
         CANTIDAD_LIBROS++;
+    }
+    protected abstract void filtrarPorPrecio(double precio);
+
+    public  double getPrecio(){
+        return precio;
     }
 }

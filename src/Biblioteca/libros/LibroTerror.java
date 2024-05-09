@@ -1,5 +1,6 @@
 package Biblioteca.libros;
 
+import Biblioteca.Biblioteca;
 import Biblioteca.libros.constants.Genero;
 import Biblioteca.libros.constants.SubGeneroTerror;
 import Biblioteca.libros.utils.LibrosUtils;
@@ -7,6 +8,8 @@ import Biblioteca.libros.utils.LibrosUtils;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LibroTerror  extends Libro{
     private SubGeneroTerror subGeneroTerror;
@@ -37,6 +40,14 @@ public class LibroTerror  extends Libro{
         } else {
             subgeneroInput = SubGeneroTerror.CRIMEN;
         }
+        LibroTerror libroTerror = new LibroTerror(nombre, autor, editorial, fechaDePubliacacion,Genero.TERROR, precio, stock, subgeneroInput);
+    }
+    @Override
+    public void filtrarPorPrecio(double precio){
+     Biblioteca.libros.get(Genero.TERROR).stream()
+             .filter(libro -> libro.getPrecio() >= precio)
+             .forEach(libro -> System.out.println(libro.toString()));
 
+     //conviertes, filtras, imprimes
     }
 }
