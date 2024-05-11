@@ -31,4 +31,19 @@ public class LibroComedia extends Libro {
                 .forEach(libro -> System.out.println(libro.toString())); //imprime
 
     }
+
+
+
+    public void filtrarPorRangoPrecio(double precio1,double precio2){
+        Biblioteca.libros.get(Genero.COMEDIA).stream()
+                .filter(libro -> libro.getPrecio() >= precio1 && libro.getPrecio()<=precio2)
+                .forEach(libro -> System.out.println(libro.toString()));
+    }
+
+    public void filtrarPorLetra(char letra){
+        Biblioteca.libros.get(Genero.COMEDIA).stream()
+                .filter(libro -> libro.getNombre().charAt(0) == letra)
+                .forEach(libro -> System.out.println(libro.toString()));
+    }
+
 }

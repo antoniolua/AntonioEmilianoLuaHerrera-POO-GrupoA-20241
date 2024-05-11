@@ -91,6 +91,7 @@ public class Usuario {
     public String getNumeroTelefono() {
         return numeroTelefono;
     }
+
     public static void motrarTodosLosUsuario(){
         System.out.println("*** USUARIOS ***");
         for (ArrayList<Usuario> listaUsuario : Biblioteca.usuarios.values()){

@@ -23,7 +23,7 @@ public class LibroAccion extends Libro {
         int stock = Integer.parseInt(datosComun.get(5));
 
 
-        LibroAccion libroTerror = new LibroAccion(nombre, autor, editorial, fechaDePubliacacion, Genero.ACCION, precio, stock);
+        LibroAccion libroAccion = new LibroAccion(nombre, autor, editorial, fechaDePubliacacion, Genero.ACCION, precio, stock);
     }
 
     @Override
@@ -33,4 +33,19 @@ public class LibroAccion extends Libro {
                 .forEach(libro -> System.out.println(libro.toString())); //imprime
 
     }
+
+    public void filtrarPorRangoPrecio(double precio1,double precio2){
+        Biblioteca.libros.get(Genero.ACCION).stream()
+                .filter(libro -> libro.getPrecio() >= precio1 && libro.getPrecio()<=precio2)
+                .forEach(libro -> System.out.println(libro.toString()));
+    }
+
+    public void filtrarPorLetra(char letra){
+        Biblioteca.libros.get(Genero.ACCION).stream()
+                .filter(libro -> libro.getNombre().charAt(0) == letra)
+                .forEach(libro -> System.out.println(libro.toString()));
+    }
+
+
+
 }

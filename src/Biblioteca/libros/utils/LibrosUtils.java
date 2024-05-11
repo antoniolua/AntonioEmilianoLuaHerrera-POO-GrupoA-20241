@@ -11,8 +11,6 @@ import java.util.Scanner;
 public class LibrosUtils {
     public static ArrayList<String> obtenerDatosComun() {
         Scanner sc = new Scanner(System.in);
-
-
         ArrayList<String> datosComun = new ArrayList<>();
 
         System.out.println("Ingresa el nombre del libro: ");

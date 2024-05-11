@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class LibroTerror  extends Libro{
@@ -19,7 +20,12 @@ public class LibroTerror  extends Libro{
         this.subGeneroTerror = subGeneroTerror;
     }
 
+    public SubGeneroTerror getSubGeneroTerror() {
+        return subGeneroTerror;
+    }
+
     public static void registrarLibro(){
+        Scanner sc = new Scanner(System.in);
         ArrayList<String> datosComun = LibrosUtils.obtenerDatosComun();
         String nombre= datosComun.get(0);
         String autor = datosComun.get(1);
@@ -34,13 +40,19 @@ public class LibroTerror  extends Libro{
         System.out.println("2. Crimen");
 
         int opcionSubgenero = 0;
+        opcionSubgenero= sc.nextInt();
         SubGeneroTerror subgeneroInput = null;
         if (opcionSubgenero == 1) {
             subgeneroInput = SubGeneroTerror.PSICOLOGICO;
+
         } else {
             subgeneroInput = SubGeneroTerror.CRIMEN;
         }
+
+
+
         LibroTerror libroTerror = new LibroTerror(nombre, autor, editorial, fechaDePubliacacion,Genero.TERROR, precio, stock, subgeneroInput);
+        System.out.println("Libro "+libroTerror.getNombre()+" registrado exitosamente");
     }
     @Override
     public void filtrarPorPrecio(double precio){
@@ -50,4 +62,21 @@ public class LibroTerror  extends Libro{
 
      //conviertes, filtras, imprimes
     }
+
+    public void filtrarPorRangoPrecio(double precio1,double precio2){
+        Biblioteca.libros.get(Genero.TERROR).stream()
+                .filter(libro -> libro.getPrecio() >= precio1 && libro.getPrecio()<=precio2)
+                .forEach(libro -> System.out.println(libro.toString()));
+    }
+
+    public void filtrarPorLetra(char letra){
+        Biblioteca.libros.get(Genero.TERROR).stream()
+                .filter(libro -> libro.getNombre().charAt(0) == letra)
+                .forEach(libro -> System.out.println(libro.toString()));
+    }
+
+
+
+
+
 }

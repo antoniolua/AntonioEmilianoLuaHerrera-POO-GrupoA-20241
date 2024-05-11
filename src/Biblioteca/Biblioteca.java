@@ -20,11 +20,7 @@ public class Biblioteca {
 
     public static final HashMap <Rol,ArrayList<Usuario>> usuarios=new HashMap<>();//es el rol es la llave, el arraylist es el valor que se le da a cada llave
     public static final HashMap<Genero, ArrayList<Libro>> libros=new HashMap<>();
-    public Biblioteca(){
-        usuarios.put(Rol.GERENTE, new ArrayList<>());
-        Gerente gerente = new Gerente("Juan", "Rivera", Rol.GERENTE, LocalDate.of(1111, 11, 11), "4433566678", "j", "123", 22, 222 );
-        usuarios.get(Rol.GERENTE).add(gerente);
-    }
+
 
 public static void inicializarHasmap(){
         usuarios.put(Rol.GERENTE, new ArrayList<>());
@@ -41,7 +37,7 @@ public static void inicializarHasmap(){
        for (Map.Entry<Rol,ArrayList<Usuario>> entry : usuarios.entrySet()) {
            ArrayList<Usuario> listaUsuarios = entry.getValue();
            for (Usuario usuarioActual : listaUsuarios) {
-               if (usuarioActual.getNombre().equals(nombreUsuario) && usuarioActual.getContrasena().equals(contrasena)) {
+               if (usuarioActual.getNombreUsuario().equals(nombreUsuario) && usuarioActual.getContrasena().equals(contrasena)) {
                    return usuarioActual;
                }
            }
