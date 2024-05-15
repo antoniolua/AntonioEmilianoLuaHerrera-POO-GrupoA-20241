@@ -17,7 +17,7 @@ public abstract class Libro {
     private String nombre;
     private String autor;
     private String editorial;
-    private LocalDate fechaDePubliacacion;
+    private String fechaDePubliacacion;
     private Genero genero;
     private double precio;
     private int stock;
@@ -34,19 +34,16 @@ public abstract class Libro {
         CANTIDAD_LIBROS++;
     }
 
-    @Override
-    public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return String.format(
-                "Nombre: %s, Autor: %s, Editorial: %s, Fecha de Publicación: %s, Género: %s, Precio: $%.2f",
-                nombre,
-                autor,
-                editorial,
-                fechaDePubliacacion,
-                genero,
-                precio
-        );
-    }
+//    @Override
+//    public String String() {
+//
+//        return "Nombre: " + nombre +
+//                ", Autor: " + autor +
+//                ", Editorial: " + editorial +
+//                ", Fecha de publiacacion: " + fechaDePubliacacion +
+//                ", Género: " + genero +
+//                ", Precio: $" + String.format("%.2f", precio);
+//    }
 
 
     protected abstract void filtrarPorPrecio(double precio);
@@ -268,7 +265,7 @@ public abstract class Libro {
         return editorial;
     }
 
-    public LocalDate getFechaDePubliacacion() {
+    public String getFechaDePubliacacion() {
         return fechaDePubliacacion;
     }
 

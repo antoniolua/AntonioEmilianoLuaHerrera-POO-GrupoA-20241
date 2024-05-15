@@ -7,7 +7,12 @@ import Usuarios.Gerente;
 import Usuarios.Trabajador;
 import Usuarios.Usuario;
 import Usuarios.utils.Rol;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -45,6 +50,31 @@ public static void inicializarHasmap(){
        return null;
     }
 
+    public static void jsonUsuarios(){
+        Gson json = new GsonBuilder().setPrettyPrinting().create();
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.json"));
+            json.toJson(usuarios, writer);
+            writer.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static void jsonLibros(){
+        Gson json = new GsonBuilder().setPrettyPrinting().create();
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("libros.json"));
+            json.toJson(libros, writer);
+            writer.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+    }
 
     //CLIENTES
     public void registrarCliente() {

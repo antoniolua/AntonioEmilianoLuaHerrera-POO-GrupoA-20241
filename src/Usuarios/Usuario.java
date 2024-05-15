@@ -14,7 +14,7 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private Rol rol;
-    private LocalDate fechaNacimiento;
+    private String fechaNacimiento;
     private String contrasena;
     private String nombreUsuario;
     private String numeroTelefono;
@@ -24,7 +24,7 @@ public class Usuario {
         this.nombre = nombre;
         this.apellido = apellido;
         this.rol = rol;
-        this.fechaNacimiento = fechaNacimiento;
+        this.fechaNacimiento = fechaNacimiento.toString();
         this.contrasena = contrasena;
         this.nombreUsuario = nombreUsuario;
         this.numeroTelefono=numeroTelefono;
@@ -72,7 +72,7 @@ public class Usuario {
         return apellido;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
