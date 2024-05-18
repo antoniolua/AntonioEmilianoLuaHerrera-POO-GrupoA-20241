@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import Biblioteca.libros.Libro;
+import Biblioteca.libros.LibroComedia;
 import Biblioteca.libros.LibroTerror;
 import Biblioteca.libros.constants.Genero;
 import Biblioteca.libros.constants.SubGeneroTerror;
@@ -401,6 +402,10 @@ public class Menu {
         Gerente gerente2 = new Gerente("Juan", "Rivera", Rol.GERENTE, LocalDate.of(1111, 11, 11), "4433566678", "a", "123", 22, 222);
         Biblioteca.usuarios.get(Rol.GERENTE).add(gerente2);
 
+        Biblioteca.usuarios.put(Rol.ClIENTE, new ArrayList<>());
+        Cliente cliente= new Cliente("Juan", "Rivera", Rol.ClIENTE, LocalDate.of(1111, 11, 11), "4433566678", "Cliente1", "123");
+        Biblioteca.usuarios.get(Rol.ClIENTE).add(cliente);
+
         Biblioteca.libros.put(Genero.TERROR, new ArrayList<>());
         LibroTerror libroTerror = new LibroTerror("el buuuuu", "Pepe Diaz", "el bazzz", LocalDate.of(1111, 11, 11), Genero.TERROR, 3000, 20, SubGeneroTerror.CRIMEN);
         Biblioteca.libros.get(Genero.TERROR).add(libroTerror);
@@ -408,6 +413,11 @@ public class Menu {
 
         LibroTerror libroTerror2 = new LibroTerror("el malefica", "Pepe Diaz", "el bazzz", LocalDate.of(1111, 11, 11), Genero.TERROR, 3000, 20, SubGeneroTerror.PSICOLOGICO);
         Biblioteca.libros.get(Genero.TERROR).add(libroTerror2);
+
+        Biblioteca.libros.put(Genero.COMEDIA, new ArrayList<>());
+        LibroComedia LibroComedia = new LibroComedia("el principe p", " Diaz", "el dsdew", LocalDate.of(1111, 11, 11), Genero.COMEDIA, 3000, 20);
+        Biblioteca.libros.get(Genero.COMEDIA).add(LibroComedia);
+
     }
 
 }
