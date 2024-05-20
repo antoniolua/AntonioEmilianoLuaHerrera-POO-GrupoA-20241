@@ -21,7 +21,7 @@ import javax.imageio.plugins.tiff.GeoTIFFTagSet;
 public class Menu {
     public static Scanner sc = new Scanner(System.in);
     public static boolean BandCerrarSesion = true;
-    public static Biblioteca biblioteca = new Biblioteca();
+
 
     //Iniciar Sesion
     public static void iniciarSesion() {
@@ -40,7 +40,7 @@ public class Menu {
             String usuarioActual = sc.nextLine();
             System.out.println("Ingresa tu contraseña:");
             String password = sc.nextLine();
-            Usuario usuario = biblioteca.verificarInicioSesion(usuarioActual, password);
+            Usuario usuario = Biblioteca.verificarInicioSesion(usuarioActual, password);
             cont++;
             if (usuario != null) {
                 UsuarioEnSesion.getInstancia().setUsuario(usuario);
@@ -50,7 +50,7 @@ public class Menu {
                 Menu.seleccionarMenu(usuario);
             } else if (cont < 5) {
                 System.out.println("Usuario o contraseña incorrectos. Por favor, intenta de nuevo.");
-                System.out.println();
+
             } else {
                 System.out.println("Terminando el programa...");
             }
@@ -71,7 +71,7 @@ public class Menu {
     public static void ejecutarMenuCliente() {
         int opc = 0;
         do {
-            System.out.println("*** MENU CLIENTE ***");
+            System.out.println("\n*** MENU CLIENTE ***");
             System.out.println("1. Ver Rentas");
             System.out.println("2. Ver Info");
             System.out.println("3. Ver Libros Disponibles");
@@ -107,7 +107,7 @@ public class Menu {
     public static void ejecutarMenuTrabajador() {
         int opc = 0;
         do {
-            System.out.println("*** MENU TRABAJADOR ***");
+            System.out.println("\n*** MENU TRABAJADOR ***");
             System.out.println("1. Registrar Cliente");
             System.out.println("2. Actualizar la informacion del cliente");
             System.out.println("3. ELiminar Cliente");
@@ -123,7 +123,7 @@ public class Menu {
                 case 1:
                     System.out.println("Opción 1 seleccionada");
                     System.out.println("*** REGISTRAR CLIENTE ***");
-                    biblioteca.registrarCliente();
+                    Biblioteca.registrarCliente();
                     break;
                 case 2:
                     System.out.println("Opción 2 seleccionada");
@@ -161,14 +161,14 @@ public class Menu {
         String opcion;
 
         do {
-            System.out.println("*** MENU GERENTE ***");
+            System.out.println("\n*** MENU GERENTE ***");
             System.out.println("1. Gestionar Clientes");
             System.out.println("2. Gestionar Trabajadores");
             System.out.println("3. Gestionar Libros");
             System.out.println("4. Cerrar Sesion");
             System.out.print("Por favor, seleccione una opción: ");
             opcion = sc.nextLine();
-
+            System.out.println();
             switch (opcion) {
                 case "1":
                     miniMenuCliente();
@@ -189,7 +189,6 @@ public class Menu {
             }
         } while (!opcion.equals("4"));
 
-        sc.close();
     }
 
 
@@ -332,16 +331,13 @@ public class Menu {
                     Libro.eliminacionPorCategoria();
                     break;
                 case "6":
-                    System.out.println("Saliendo del programa...");
+                    System.out.println("Regresando al menú principal...");
                     break;
                 default:
                     System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
             }
-            sc.nextLine();
+
         } while (!opcion.equals("6"));
-
-        sc.close();
-
     }
 
 
@@ -393,30 +389,6 @@ public class Menu {
     }
 
     public static void AgregarUsuarios() {
-
-
-        Biblioteca.usuarios.put(Rol.GERENTE, new ArrayList<>());
-        Gerente gerente = new Gerente("Juan", "Rivera", Rol.GERENTE, LocalDate.of(1111, 11, 11), "4433566678", "j", "123", 22, 222);
-        Biblioteca.usuarios.get(Rol.GERENTE).add(gerente);
-
-        Gerente gerente2 = new Gerente("Juan", "Rivera", Rol.GERENTE, LocalDate.of(1111, 11, 11), "4433566678", "a", "123", 22, 222);
-        Biblioteca.usuarios.get(Rol.GERENTE).add(gerente2);
-
-        Biblioteca.usuarios.put(Rol.ClIENTE, new ArrayList<>());
-        Cliente cliente= new Cliente("Juan", "Rivera", Rol.ClIENTE, LocalDate.of(1111, 11, 11), "4433566678", "Cliente1", "123");
-        Biblioteca.usuarios.get(Rol.ClIENTE).add(cliente);
-
-        Biblioteca.libros.put(Genero.TERROR, new ArrayList<>());
-        LibroTerror libroTerror = new LibroTerror("el buuuuu", "Pepe Diaz", "el bazzz", LocalDate.of(1111, 11, 11), Genero.TERROR, 3000, 20, SubGeneroTerror.CRIMEN);
-        Biblioteca.libros.get(Genero.TERROR).add(libroTerror);
-
-
-        LibroTerror libroTerror2 = new LibroTerror("el malefica", "Pepe Diaz", "el bazzz", LocalDate.of(1111, 11, 11), Genero.TERROR, 3000, 20, SubGeneroTerror.PSICOLOGICO);
-        Biblioteca.libros.get(Genero.TERROR).add(libroTerror2);
-
-        Biblioteca.libros.put(Genero.COMEDIA, new ArrayList<>());
-        LibroComedia LibroComedia = new LibroComedia("el principe p", " Diaz", "el dsdew", LocalDate.of(1111, 11, 11), Genero.COMEDIA, 3000, 20);
-        Biblioteca.libros.get(Genero.COMEDIA).add(LibroComedia);
 
     }
 

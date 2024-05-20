@@ -4,12 +4,10 @@ import Biblioteca.Biblioteca;
 import Biblioteca.libros.constants.Genero;
 import Biblioteca.libros.constants.SubGeneroTerror;
 import Biblioteca.libros.utils.LibrosUtils;
+import Usuarios.Usuario;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LibroTerror extends Libro {
@@ -75,5 +73,41 @@ public class LibroTerror extends Libro {
                 .forEach(libro -> System.out.println(libro.toString()));
     }
 
+
+    public static void mostrarLibrosTerror() {
+        System.out.println("Genero: " + Genero.TERROR);
+        ArrayList<Libro> listaLibros = Biblioteca.libros.get(Genero.TERROR);
+        if (listaLibros.isEmpty()) {
+            System.out.println("---Agregue un Libro---");
+        } else {
+            for (Libro librosTerror : listaLibros) {
+                LibroTerror libroTerror = (LibroTerror) librosTerror;
+                System.out.println(libroTerror.toString());
+            }
+        }
+    }
+    public static void eliminarLibroTerror() {
+        mostrarLibrosTerror();
+        boolean libroEncontrado = false;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Ingrese el nombre del libro que desea eliminar: ");
+        String libroEliminar = sc.nextLine();
+
+        for (Libro listaLibro : Biblioteca.libros.get(Genero.TERROR)) {
+            LibroTerror librosTerror = (LibroTerror) listaLibro;
+            if (librosTerror.getNombre().equals(libroEliminar)){
+                libroEncontrado = true;
+
+                Biblioteca.libros.get(Genero.TERROR).remove(librosTerror);
+                System.out.println("Libro eliminado");
+                return;
+            }
+
+        }
+        if (!libroEncontrado) {
+            System.out.println("Libro no encontrado");
+        }
+    }
 
 }

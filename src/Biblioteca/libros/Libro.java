@@ -34,22 +34,17 @@ public abstract class Libro {
         CANTIDAD_LIBROS++;
     }
 
-//    @Override
-//    public String String() {
-//
-//        return "Nombre: " + nombre +
-//                ", Autor: " + autor +
-//                ", Editorial: " + editorial +
-//                ", Fecha de publiacacion: " + fechaDePubliacacion +
-//                ", Género: " + genero +
-//                ", Precio: $" + String.format("%.2f", precio);
-//    }
 
+    public String toString() {
+        return String.format("Libro{id=%d, nombre='%s', autor='%s', editorial='%s', fechaDePublicacion='%s', genero=%s, precio=%.2f, stock=%d}",
+                id, nombre, autor, editorial, fechaDePubliacacion, genero, precio, stock);
+    }
 
     protected abstract void filtrarPorPrecio(double precio);
     protected abstract void filtrarPorRangoPrecio(double precio1,double precio2);
     protected abstract void filtrarPorLetra(char letra);
 
+    //Mostrar Libro de acuerdo a su categoria
 
 
 
@@ -78,19 +73,19 @@ public abstract class Libro {
         do {
             switch (opc) {
                 case "1":
-                    mostrarLibrosCategoria(Genero.TERROR);
+
+                   break;
                 case "2":
-                    mostrarLibrosCategoria(Genero.COMEDIA);
                     break;
                 case "3":
-                    mostrarLibrosCategoria(Genero.ACCION);
+
                     break;
                 case "4":
                     ListadoGeneral();
                     break;
                 case "5":
                     System.out.println("Saliendo...");
-                    break;
+                    return;
                 default:
                     System.out.println("opcion invalida");
                     break;
@@ -99,119 +94,46 @@ public abstract class Libro {
     }
 
 
-    public static boolean mostrarLibrosCategoria(Genero genero) {
-        boolean hayLibros = false; // Bandera para saber si hay libros del género dado
 
-        System.out.println("Genero: "+genero);
-        // Recorre todas las listas de libros en la biblioteca
-        for (ArrayList<Libro> listaLibro : Biblioteca.libros.values()) {
-            for (Libro libro : listaLibro) {
-                // Verifica si el libro es del género deseado
-                if (libro.getGenero() == genero) {
-                    hayLibros = true; // Indica que se encontró al menos un libro
-                    System.out.println(libro.toString());
 
-                    // Si es del género "Terror" y tiene subgénero, muéstralo
-                    if (genero == Genero.TERROR && libro instanceof LibroTerror) {
-                        LibroTerror libroTerror = (LibroTerror) libro; // Casting a LibroTerror
-                        System.out.println("Subgénero: " + libroTerror.getSubGeneroTerror());
-                    }
-                    System.out.println();
 
-                }
-
-            }
-
-        }
-
-    // Si no se encontraron libros del género dado, muestra un mensaje
-        if (!hayLibros) {
-            System.out.println("No hay libros en esta categoría.");
-     hayLibros = false;
-        }
-        return hayLibros;
-    }
 
     //Eliminacion de los libros por categoria
 
     public static void eliminacionPorCategoria(){
         Scanner sc = new Scanner(System.in);
         String opc = null;
-        System.out.println("¿Que genero desea eliminar el libro?");
-        System.out.println("1. Terror");
-        System.out.println("2. Comedia");
-        System.out.println("3. Accion");
-        System.out.println("4. Salir");
-        opc = sc.nextLine();
         do {
+            System.out.println("\n¿Que genero desea eliminar el libro?");
+            System.out.println("1. Terror");
+            System.out.println("2. Comedia");
+            System.out.println("3. Accion");
+            System.out.println("4. Salir");
+            opc = sc.nextLine();
+            System.out.println();
             switch (opc) {
                 case "1":
-                    if (mostrarLibrosCategoria(Genero.TERROR) == false){
-                        System.out.println("---Agregue un Libro---");
-                        return;
-                    }else {
-                        eliminarLibro(Genero.TERROR);
-                      return;
-                    }
+                    LibroTerror.eliminarLibroTerror();
+                      break;
                 case "2":
-                    if (mostrarLibrosCategoria(Genero.COMEDIA) == false){
-                        System.out.println("---Agregue un Libro---");
-                        return;
-
-                    }else {
-                        eliminarLibro(Genero.COMEDIA);
-                        eliminacionPorCategoria();
-                        return;
-                    }
+                    LibroComedia.eliminarLibroComedia();
+                    break;
                 case "3":
-                    if (mostrarLibrosCategoria(Genero.ACCION) == false){
-                        System.out.println("---Agregue un Libro---");
-                        return;
-                    }else {
-                        eliminarLibro(Genero.ACCION);
-                        return;
-                    }
+                    LibroAccion.eliminarLibroAccion();
+                    break;
                 case "4":
                     System.out.println("Saliendo...");
-                    break;
+                    return;
                 default:
                     System.out.println("opcion invalida");
                     break;
             }
+
         } while (opc != "4");
     }
 
 
-    public static void eliminarLibro(Genero genero){
-        boolean libroEncontrado=false;
-        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Ingrese el nombre del libro que desea eliminar: ");
-        String libroEliminar= sc.nextLine();
-        for (ArrayList<Libro> listaLibro :Biblioteca.libros.values()){
-            Iterator<Libro> iterador = listaLibro.iterator();
-
-            while (iterador.hasNext()) {
-                Libro libro = iterador.next();
-
-                if (libro.getNombre().equals(libroEliminar) && libro.getGenero() == genero) {
-                    iterador.remove();
-                    libroEncontrado = true;
-                    System.out.println("Libro '" + libroEliminar + "' eliminado correctamente.");
-                    break;
-                }
-            }
-
-            if (libroEncontrado) {
-                break;
-            }
-
-        }
-        if (!libroEncontrado) {
-            System.out.println("Libro '" + libroEliminar + "' no fue encontrado.");
-        }
-
-    }
     //Registrar LIbro de acuerdo a su categoria
     public static void registrarLibroCategoria(){
 

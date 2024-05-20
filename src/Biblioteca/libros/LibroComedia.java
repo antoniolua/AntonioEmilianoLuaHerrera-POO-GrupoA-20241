@@ -3,9 +3,11 @@ package Biblioteca.libros;
 import Biblioteca.Biblioteca;
 import Biblioteca.libros.constants.Genero;
 import Biblioteca.libros.utils.LibrosUtils;
+import Usuarios.Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class LibroComedia extends Libro {
     public LibroComedia(String nombre, String autor, String editorial, LocalDate fechaDePubliacacion, Genero genero, double precio, int stock) {
@@ -45,5 +47,54 @@ public class LibroComedia extends Libro {
                 .filter(libro -> libro.getNombre().charAt(0) == letra)
                 .forEach(libro -> System.out.println(libro.toString()));
     }
+
+    public void mostrarLibros() {
+        System.out.println("Genero: " + Genero.ACCION);
+        ArrayList<Usuario> listaUsuario = Biblioteca.usuarios.get(Genero.ACCION);
+        if (listaUsuario.isEmpty()) {
+            System.out.println("---Agregue un Libro---");
+        } else {
+            for (Usuario usuarios : listaUsuario) {
+                System.out.println(usuarios.toString());
+            }
+        }
+
+    }
+
+    public static void mostrarLibrosComedia() {
+        System.out.println("Genero: " + Genero.COMEDIA);
+        ArrayList<Libro> listaLibros = Biblioteca.libros.get(Genero.COMEDIA);
+        if (listaLibros.isEmpty()) {
+            System.out.println("---Agregue un Libro---");
+        } else {
+            for (Libro librosComedia : listaLibros) {
+                LibroComedia libroComedia = (LibroComedia) librosComedia;
+                System.out.println(libroComedia.toString());
+            }
+        }
+    }
+    public static void eliminarLibroComedia() {
+        mostrarLibrosComedia();
+        boolean libroEncontrado = false;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Ingrese el nombre del libro que desea eliminar: ");
+        String libroEliminar = sc.nextLine();
+
+        for (Libro listaLibro : Biblioteca.libros.get(Genero.COMEDIA)) {
+            LibroComedia librosComedia = (LibroComedia) listaLibro;
+            if (librosComedia.getNombre().equals(libroEliminar)){
+                libroEncontrado = true;
+                Biblioteca.libros.get(Genero.COMEDIA).remove(librosComedia);
+                System.out.println("Libro eliminado");
+                return;
+            }
+
+        }
+        if (!libroEncontrado) {
+            System.out.println("Libro no encontrado");
+        }
+    }
+
 
 }

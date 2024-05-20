@@ -30,6 +30,7 @@ public class Cliente extends Usuario {
             Biblioteca.usuarios.put(Rol.ClIENTE, new ArrayList<Usuario>());
         }
         Biblioteca.usuarios.get(Rol.ClIENTE).add(cliente);
+        Biblioteca.guardarEnJSON();
         System.out.println("\nCliente Registrado\n");
     }
     public static void mostrarClientes(){
